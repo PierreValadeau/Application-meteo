@@ -9,13 +9,16 @@ body {
   align-items: center;
   height: 100vh;
 }
-
+h1{
+  color: black;
+  font-weight: 400;
+}
 input, button {
   border: 1px solid #ccc;
   border-radius: 5px;}
 
 button {
-  background-color: #f3e6db;
+  background-color: #e2b3a5;
   color: #fff;
   border: none;
 }
