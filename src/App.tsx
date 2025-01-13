@@ -1,21 +1,39 @@
-// src/App.jsx
 import React, { useState } from "react";
 import axios from "axios";
 
-const App = () => {
-  const [city, setCity] = useState(""); // Ville recherchée
-  const [weatherData, setWeatherData] = useState(null); // Données météo
-  const [error, setError] = useState(""); // Message d'erreur éventuel
+// Définir le type des données météo renvoyées par l'API
+interface WeatherData {
+  name: string; // Nom de la ville
+  sys: {
+    country: string; // Code du pays
+  };
+  main: {
+    temp: number; // Température en °C
+  };
+  wind: {
+    speed: number; // Vitesse du vent en m/s
+  };
+  weather: {
+    description: string; // Description du temps (ex. : "clear sky")
+  }[];
+}
 
+const App: React.FC = () => {
+  const [city, setCity] = useState<string>(""); // Ville recherchée
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null); // Données météo
+  const [error, setError] = useState<string>(""); // Message d'erreur éventuel
+
+  // Fonction pour gérer la recherche
   const handleSearch = async () => {
-    if (!city) return; // Vérifie qu'une ville est entrée
+    if (!city) return;
 
     try {
       setError(""); // Réinitialise l'erreur
-      const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY; // Récupère la clé API depuis .env
+      const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY; // Récupère la clé API
+      console.log("api key", apiKey);
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-      const response = await axios.get(url);
+      const response = await axios.get<WeatherData>(url); // Précise le type attendu dans la réponse
       setWeatherData(response.data); // Stocke les données météo
     } catch (err) {
       console.error(err);
@@ -25,12 +43,13 @@ const App = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div className="mainDiv">
       <h1>Weather App</h1>
 
       {/* Input pour la recherche de ville */}
       <input
         type="text"
+        className="inputText"
         placeholder="Enter city name"
         value={city}
         onChange={(e) => setCity(e.target.value)}
@@ -52,10 +71,18 @@ const App = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
       {weatherData && (
         <div style={{ marginTop: "20px" }}>
-          <h2>{weatherData.name}, {weatherData.sys.country}</h2>
-          <p><strong>Temperature:</strong> {weatherData.main.temp}°C</p>
-          <p><strong>Wind:</strong> {weatherData.wind.speed} m/s</p>
-          <p><strong>Weather:</strong> {weatherData.weather[0].description}</p>
+          <h2>
+            {weatherData.name}, {weatherData.sys.country}
+          </h2>
+          <p>
+            <strong>Temperature:</strong> {weatherData.main.temp}°C
+          </p>
+          <p>
+            <strong>Wind:</strong> {weatherData.wind.speed} m/s
+          </p>
+          <p>
+            <strong>Sky:</strong> {weatherData.weather[0].description}
+          </p>
         </div>
       )}
     </div>
