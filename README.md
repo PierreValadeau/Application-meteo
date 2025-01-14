@@ -32,12 +32,6 @@ L'objectif de ce projet est de mettre en pratique les compétences suivantes :
 
 ---
 
-## 📂 Structure du projet
-
-weather-app/ ├── public/ │ └── index.html # Point d'entrée HTML ├── src/ │ ├── App.tsx # Composant principal de l'application │ ├── main.tsx # Point d'entrée React │ ├── index.css # Feuille de styles principale │ └── env.example # Exemple de configuration des variables d'environnement ├── .gitignore # Fichiers et dossiers ignorés par Git ├── package.json # Dépendances et scripts du projet ├── tsconfig.json # Configuration TypeScript ├── vite.config.ts # Configuration du bundler Vite └── README.md # Documentation du projet
-
----
-
 ## 🛠️ Technologies utilisées
 
 - **React.js** : Pour créer l'interface utilisateur.
