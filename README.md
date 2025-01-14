@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+# Weather App 🌦️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet est une application météo simple, développée avec **React.js** et **TypeScript**, qui utilise l'API OpenWeather pour afficher les informations météo d'une ville.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Objectifs du projet
 
-## Expanding the ESLint configuration
+L'objectif de ce projet est de mettre en pratique les compétences suivantes :
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Frontend :
+- Utiliser **React.js** pour construire des composants dynamiques et réactifs.
+- Utiliser **TypeScript** pour typage strict et gestion d'erreurs au moment du développement.
+- Appliquer **CSS natif** pour styliser l'application (sans frameworks CSS).
+- Gérer les événements (exemple : rechercher une ville via un champ de texte).
 
-- Configure the top-level `parserOptions` property like this:
+### Backend / API :
+- Faire des requêtes HTTP avec **Axios** pour interagir avec l'API OpenWeather.
+- Travailler avec des données JSON en temps réel.
+- Gérer les erreurs réseau ou API, comme les codes de statut 401 (Unauthorized).
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🚀 Fonctionnalités principales
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Rechercher une ville :** L'utilisateur peut entrer le nom d'une ville pour afficher ses données météo actuelles.
+- **Données affichées :**
+  - Température (en degrés Celsius).
+  - Vitesse du vent.
+  - Description du temps (ex. : "ciel dégagé").
+- **Gestion des erreurs :** Un message s'affiche si la ville est introuvable ou si une erreur réseau survient.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+## 📂 Structure du projet
+
+weather-app/ ├── public/ │ └── index.html # Point d'entrée HTML ├── src/ │ ├── App.tsx # Composant principal de l'application │ ├── main.tsx # Point d'entrée React │ ├── index.css # Feuille de styles principale │ └── env.example # Exemple de configuration des variables d'environnement ├── .gitignore # Fichiers et dossiers ignorés par Git ├── package.json # Dépendances et scripts du projet ├── tsconfig.json # Configuration TypeScript ├── vite.config.ts # Configuration du bundler Vite └── README.md # Documentation du projet
+
+---
+
+## 🛠️ Technologies utilisées
+
+- **React.js** : Pour créer l'interface utilisateur.
+- **TypeScript** : Pour garantir un code robuste et bien typé.
+- **Vite** : Pour un démarrage rapide et une expérience de développement rapide.
+- **Axios** : Pour simplifier les requêtes HTTP.
+- **API OpenWeather** : Fournit les données météo en temps réel.
+
+---
+
+## ⚙️ Installation et lancement
+
+1. **Clonez ce dépôt :**
+   ```bash
+   git clone https://github.com/ton-utilisateur/weather-app.git
+   cd weather-app
+
+2. **Installez les dépendances :**
+  npm install
+
+3. **Ajoutez votre clé API OpenWeather :**
+
+- Créez un fichier .env à la racine du projet. 
+- Ajoutez la ligne suivante avec votre clé API: 
+  VITE_OPENWEATHER_API_KEY=your_api_key
+
+4. **Lancez le projet :**
+
+npm run dev
+
+5. **Ouvrez l'application dans votre navigateur :**
+
+- Rendez-vous sur hhtps://localhost:5173
+
+## 🌟 Ce que j'ai travaillé
+
+- Gestion des états avec React : J'ai utilisé les hooks comme useState pour gérer les données de l'application.
+- Utilisation d'une API externe : J'ai appris à envoyer des requêtes HTTP, traiter les réponses, et gérer les erreurs éventuelles.
+- TypeScript : J'ai défini des types pour les données renvoyées par l'API, ce qui m'a permis d'éviter des erreurs et de rendre mon code plus maintenable.
+
+## 📈 Améliorations possibles
+
+- Ajouter un loader pendant le chargement des données.
+- Intégrer une fonctionnalité pour détecter la localisation actuelle de l'utilisateur.
+- Afficher des prévisions météo sur plusieurs jours.
+- Ajouter des tests unitaires avec Jest et/ou React Testing Library.
+
+
+## 📮 Contact 
+
+Si vous avez des questions ou suggestions, n'hésitez pas à me contacter p.valadeau@outlook.fr ou à créer une issue dans ce dépôt. 😊
